@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-cpu-burner
+  namespace: default-scaling
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-cpu-burner
+  template:
+    metadata:
+      labels:
+        app: flask-cpu-burner
+    spec:
+      containers:
+      - name: flask-cpu-burner
+        image: flask-cpu-burner  # no registry needed if built inside Minikube
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
