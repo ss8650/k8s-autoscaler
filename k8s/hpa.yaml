@@ -27,9 +27,15 @@ spec:
       - type: Percent
         value: 100
         periodSeconds: 30
+      - type: Pods
+        value: 1
+        periodSeconds: 30
     scaleUp:
       stabilizationWindowSeconds: 0
       policies:
       - type: Percent
         value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 1
         periodSeconds: 15

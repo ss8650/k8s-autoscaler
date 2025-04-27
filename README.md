@@ -4,15 +4,20 @@ This repository contains a reinforcement learning agent designed to optimize the
 
 
 ## TODO
-For HPA scaling:
-1. make sure it scales one pod at a time
-
----
-
-
-Might want to include a shell script to change `hey` requests randomly ro simulate real world traffic.
 
 Generalize the k8s deployment.
 
 Include all commands I've used so far to set up everything in a shell script.
 
+```sh
+
+kubectl create namespace default-scaling
+kubectl create namespace rl-scaling
+
+
+kubectl apply -n default-scaling -f k8s/flask-app.yaml
+kubectl apply -n default-scaling -f k8s/flask-service.yaml
+
+kubectl apply -n rl-scaling -f k8s/flask-app.yaml
+kubectl apply -n rl-scaling -f k8s/flask-service.yaml
+```
