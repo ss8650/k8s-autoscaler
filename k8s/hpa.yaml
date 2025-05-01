@@ -2,8 +2,8 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   creationTimestamp: "2025-04-27T20:33:53Z"
-  name: flask-cpu-burner
-  namespace: default-scaling
+  name: flask-app
+  namespace: hpa-scaling
   resourceVersion: "9469"
   uid: abb15b2f-ba5f-47bb-8671-96f7af7249b0
 spec:
@@ -19,7 +19,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: flask-cpu-burner
+    name: flask-app
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 30

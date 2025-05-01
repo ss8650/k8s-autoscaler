@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVICE_URL="http://127.0.0.1:37889/"  # adjust if needed
+SERVICE_URL="http://127.0.0.1:33431/"  # adjust if needed
 
 for i in {1..10}
 do

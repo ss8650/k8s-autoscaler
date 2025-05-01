@@ -1,0 +1,8 @@
+NAMESPACE = "rl-scaling"
+PROMETHEUS_URL = "http://localhost:9090"
+DEPLOYMENT_NAME = "flask-app"
+SLEEP_TIME = 15
+HPA_SERVICE_URL = "http://127.0.0.1:44283/"
+RL_SERVICE_URL = "http://127.0.0.1:32973/"
+MIN_REPLICAS = 1
+MAX_REPLICAS = 5

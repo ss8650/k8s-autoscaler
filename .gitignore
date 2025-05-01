@@ -3,3 +3,4 @@ __pycache__/
 metrics_log.csv
 metrics_log_rl_agent.csv
 q_table.pkl
+*.log
