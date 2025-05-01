@@ -15,11 +15,11 @@ monitor = Monitor(PROMETHEUS_URL, DEPLOYMENT_NAME, NAMESPACE,SLEEP_TIME)
 executor = Execute(NAMESPACE, DEPLOYMENT_NAME, MIN_REPLICAS, MAX_REPLICAS)
 analyze = Analyze()
 
-state_size = analyze.max_cpu_bucket * analyze.max_rt_bucket * analyze.max_pods
+state_size = (analyze.max_cpu_bucket + 1)* (analyze.max_rt_bucket + 1) * analyze.max_pods
 agent = QLearner(state_size=state_size)
 
 logger.info(f"Starting training loop with namespace: {NAMESPACE}, deployment name: {DEPLOYMENT_NAME}")
-executor.scale(1)  # Ensure at least one pod is running
+executor.scale(-10)  # Ensure at least one pod is running
 
 try:
     while True:
@@ -58,7 +58,8 @@ try:
         # Q-learning update
         agent.update(state_id, action, reward, next_state_id)
 
-        logger.info(f"CPU: {cpu:.2f}%, RT: {rt:.2f}ms, Pods: {pods} → Action: {action}, Reward: {reward:.2f}")
+        logger.info(f"CPU: {cpu:.2f}%, RT: {rt:.2f}ms, Pods: {pods} -> Action: {action}, Reward: {reward:.2f}")
+
 
 except KeyboardInterrupt:
     logger.info("Training interrupted. Saving Q-table.")
