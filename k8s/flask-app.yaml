@@ -15,14 +15,15 @@ spec:
         app: flask-app
     spec:
       containers:
-      - name: flask-app
-        image: flask-app  # no registry needed if built inside Minikube
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 8080
-        - containerPort: 8000
-        resources:
-          requests:
-            cpu: "100m"
-          limits:
-            cpu: "1000m"
+        - name: flask-app
+          image: k3d-mycluster-registry:51831/flask-app:latest
+          ports:
+            - name: http-web
+              containerPort: 8080
+            - name: http-metrics
+              containerPort: 8000
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "1000m"
